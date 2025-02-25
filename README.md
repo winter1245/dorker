@@ -1,4 +1,4 @@
-# snowflake
+# dorker
 A tool for automating search engine dorking
 
 ## Installation
