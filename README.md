@@ -16,5 +16,5 @@ github org:TARGET "password" type=code
 #### Usage
 
 ```sh
-dorker searchterm
+dorker -h
 ```
