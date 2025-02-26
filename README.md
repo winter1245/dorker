@@ -7,7 +7,7 @@ Automatik search engine dorking tool
 ```sh
 pipx install git+https://github.com/winter1245/dorker
 ```
-#### Example file in .dorker/
+#### Example file in .dorker/pattern.txt
 ```sh
 google site:TARGET.com filetype:pdf
 github org:TARGET "password" type=code
@@ -17,4 +17,5 @@ github org:TARGET "password" type=code
 
 ```sh
 dorker -h
+dorker searchterm pattern pattern2
 ```
