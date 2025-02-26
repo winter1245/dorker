@@ -1,3 +1,4 @@
+import re
 from time import sleep
 import webbrowser
 import urllib.parse
@@ -14,6 +15,22 @@ def google(query):
     sleep(1)
 
     return
+
+def github(query):
+    
+    type= re.findall(r"type=[^ \n]+", query)
+    if len(type)>0: # dont encode type
+        type= '&' + type[0]
+        query=urllib.parse.quote_plus(query[:-len(type)]) + type
+        print(type)
+    else:
+        query=urllib.parse.quote_plus(query)
+    
+    webbrowser.open(f'https://github.com/search?q={query}')
+    print(f'https://github.com/search?q={query}')
+    
+    sleep(1)
+
 
 def getDorks(target):
     
@@ -34,6 +51,9 @@ def getDorks(target):
 
                         case "google":
                             google(query)
+
+                        case "github":
+                            github(query)
     
         except OSError:
             print(f"Reading {user}/.dorker/{file} failed")
