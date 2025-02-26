@@ -1,5 +1,5 @@
 # dorker
-A tool for automating search engine dorking
+Automatik search engine dorking tool
 
 ## Installation
 
