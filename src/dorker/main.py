@@ -1,3 +1,5 @@
+from time import sleep
+import webbrowser
 import urllib.parse
 import sys
 import os
@@ -8,7 +10,8 @@ import requests
 def google(query):
     
     query=urllib.parse.quote_plus(query)
-    print(f'https://www.google.com/search?q={query}')
+    webbrowser.open(f'https://www.google.com/search?q={query}')
+    sleep(1)
 
     return
 
@@ -18,20 +21,22 @@ def getDorks(target):
     if not os.path.isdir(f'{user}/.dorker'):
         os.makedirs(f'{user}/.dorker')
     
-    try:
-        with open(f'{user}/.dorker/dorks.txt', 'r') as file:
-            for line in file:
-                engine = line.split(' ')[0]
-                query = line[len(engine)+1:-1]
-                query = query.replace('TARGET',target)
+    files = os.listdir(f'{user}/.dorker')
+    for file in files:
+        try:
+            with open(f'{user}/.dorker/{file}', 'r') as file:
+                for line in file:
+                    engine = line.split(' ')[0]
+                    query = line[len(engine)+1:-1]
+                    query = query.replace('TARGET',target)
 
-                match engine:
+                    match engine:
 
-                    case "google":
-                        google(query)
+                        case "google":
+                            google(query)
     
-    except OSError:
-        print(f"Reading {user}/.dorker/dorks.txt failed")
+        except OSError:
+            print(f"Reading {user}/.dorker/{file} failed")
 
     return
 
