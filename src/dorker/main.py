@@ -14,6 +14,14 @@ parser.add_argument("files", help="The pattern files in ~/.docker/ to use", narg
 parser.add_argument("-v", "--verbose",action="store_true", help="more verbose logging")
 args = parser.parse_args()
 
+def bing(query):
+
+    query=urllib.parse.quote_plus(query)
+    webbrowser.open(f'https://www.bing.com/search?q={query}')
+    sleep(1)
+    return
+
+
 def google(query):
     
     query=urllib.parse.quote_plus(query)
@@ -66,6 +74,9 @@ def getDorks(target,userfiles):
 
                             case "github":
                                 github(query)
+
+                            case "bing":
+                                bing(query)
     
             except OSError:
                 print(f"Reading {user}/.dorker/{file} failed")
